@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fpages\u002Farticles\u002F[documentId]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

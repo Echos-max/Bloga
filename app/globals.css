@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@plugin './hero.ts';
+/* Note: You may need to change the path to fit your project structure */
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
+/* 改变滚动条轨道的样式 */
+/*定义滚动条高宽及背景
+ 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+    width:8px;
+    height:1px;
+    background-color:#F5F5F5;
+}
+/*定义滚动条轨道
+ 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    border-radius:10px;
+    background-color:#F5F5F5;
+}
+/*定义滑块
+ 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius:10px;
+    background-color:#555;
+}
+/* 代碼塊容器：水平滾動 + 圓角 + 背景 */
+/* 解决代码块未占满问题 */
+code {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* 确保预格式化文本完全填充 */
+pre {
+    margin: 0;
+    padding: 0;
+    border-radius: 0.5rem;
+    overflow: auto;
+}
+
+/* 优化代码块显示 */
+.prose pre {
+    margin: 0;
+    padding: 0;
+    border-radius: 0.5rem;
+}
+
+/* 复制按钮样式 */
+.copy-button {
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+/* 防止代码块边缘出现空白 */
+.code-block {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Markdown 图片样式增强 */
+.prose img {
+    border-radius: 0.75rem !important; /* 12px */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+    transition: all 0.3s ease;
+    margin: 1.5rem auto !important;
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+.prose img:hover {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+    transform: translateY(-2px);
+}
+
+/* 暗黑模式适配 */
+.dark .prose img {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -1px rgb(0 0 0 / 0.25);
+}
+
+.dark .prose img:hover {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -2px rgb(0 0 0 / 0.3);
+}
+
+/* 小屏幕优化 */
+@media (max-width: 640px) {
+    .prose img {
+        border-radius: 0.5rem !important; /* 8px */
+        margin: 1rem auto !important;
+    }
+
+    .prose figcaption {
+        font-size: 0.85rem !important;
+    }
+}
+
+/* 图片容器样式 */
+.prose .image-container {
+    position: relative;
+    margin: 2rem auto;
+    max-width: 100%;
+    text-align: center;
+}
+
+/* 图片标题样式 */
+.prose figcaption {
+    font-style: italic;
+    color: #6b7280;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.dark .prose figcaption {
+    color: #9ca3af;
+}
