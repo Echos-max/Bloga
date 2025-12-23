@@ -31,6 +31,9 @@ export default function TopNavbar() {
   };
 
   
+  // 登陆后台地址
+  const [loginurlpath, setLoginUrlpath] = useState<any[]>([]);
+
   // 移动端底部导航项
   const mobileNavItems = [
     { label: "首页", href: "/", icon: "🏠" },
@@ -38,14 +41,11 @@ export default function TopNavbar() {
     { label: "动态", href: "/pages/Dynanmin", icon: "🔄" },
     { label: "友链", href: "/pages/FriendLinks", icon: "🔗" },
     { label: "图册", href: "/pages/Album", icon: "📸" },
-    { label: "登录", href: "/login", icon: "👤" }, // 添加登录项
   ];
-  // 登陆后台地址
-  const [loginurlpath, setLoginUrlpath] = useState('');
   useEffect(() => {
     const fetchLoginUrl = async () => {
       try {
-        const res = await apiClient.get('/api/login-url');
+        const res = await apiClient.get('/api/loginurls');
         const data = res?.data;
         // @ts-ignore
         setLoginUrlpath(Array.isArray(data) ? data : (data ? [data] : []));
@@ -140,13 +140,13 @@ export default function TopNavbar() {
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex flex-row items-center gap-2">
             {Array.isArray(loginurlpath) && loginurlpath.map((item: any, idx: number) => {
-              const loginurls = item?.LoginURL || "";
+              const loginurls = item?.loginurl || "";
               console.log("我是登陆地址",loginurls);
               
               return (
-                <Link key={loginurls || idx} href={loginurls} passHref>
+                <Link key={loginurls || idx} href={loginurls} passHref >
                   <span className="text-default-700 hover:text-primary">
-                    <RiLoginCircleLine size={23} color="#aeaeb1" />
+                    <RiLoginCircleLine size={23} color="#7f7e83" />
                   </span>
                 </Link>
               );
@@ -159,9 +159,9 @@ export default function TopNavbar() {
       <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-divider">
         <div className="flex justify-around items-center h-16 px-2">
           {mobileNavItems.map((item) => (
-            <Link 
-              key={item.href} 
-              href={item.href} 
+            <Link
+              key={item.href}
+              href={item.href}
               className={`flex flex-col items-center justify-center w-full py-2 rounded-t-xl transition-all ${
                 isActive(item.href)
                   ? "text-primary font-bold"
@@ -172,11 +172,29 @@ export default function TopNavbar() {
               <span className="text-xs">{item.label}</span>
             </Link>
           ))}
+          {/* 移动端登录项 */}
+          {Array.isArray(loginurlpath) && loginurlpath.map((item: any, idx: number) => {
+            const loginurls = item?.loginurl || "";
+            const loginName = item?.loginName || "登录";
+
+            return (
+              <Link
+                key={loginurls || `login-${idx}`}
+                href={loginurls || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center w-full py-2 rounded-t-xl transition-all text-default-500 hover:text-primary"
+              >
+                <span className="text-xl mb-1">👤</span>
+                <span className="text-xs">{loginName}</span>
+              </Link>
+            );
+          })}
         </div>
       </nav>
       
       {/* 为底部导航预留空间，防止内容被遮挡 */}
-      <div className="sm:hidden pb-16"></div>
+      <div className="sm:hidden pb-28"></div>
     </>
   );
 }

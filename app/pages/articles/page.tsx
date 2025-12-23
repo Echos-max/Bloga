@@ -130,7 +130,7 @@ export default function Home() {
                                   // 如果是Strapi路径（以 /uploads/ 开头），则拼接baseURL
                                   return coverUrl?.startsWith('/uploads/')
                                     ? `${STRAPI_BASE}${coverUrl}`
-                                    : (coverUrl || '/Banner.jpg');
+                                    : (coverUrl || '');
                                 })()
                             }
                             alt={item.articleName}

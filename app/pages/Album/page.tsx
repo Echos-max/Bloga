@@ -83,7 +83,9 @@ const MyComponent = () => {
   }
 
   return (
-    <div className="album grid grid-cols-2 gap-4 p-4">
+    <div className="album flex flex-row w-full justify-center items-center gap-2 flex-wrap
+      min-lg:flex
+    ">
       <Image.PreviewGroup>
         {albumList.map((item) => {
           // 获取第一张图片
@@ -94,7 +96,8 @@ const MyComponent = () => {
 
 
           return (
-            <div key={item.id} className="aspect-square h-52 overflow-hidden rounded-lg relative ">
+            <div key={item.id} className="aspect-square h-44 overflow-hidden rounded-lg relative
+            ">
               <Image
                 src={fullUrl}
                 alt="basic"

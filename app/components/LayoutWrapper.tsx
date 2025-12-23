@@ -141,7 +141,7 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
   return (
     <animated.div
       style={props}
-      className=" bg-gray-50 flex mt-16 flex-col max-sm:mt-[-9rem]"
+      className=" bg-gray-50 flex mt-23 flex-col max-sm:mt-[-9rem]"
     >
       {/* 顶部 Banner */}
       <header className="relative h-72 sm:w-full  sm:h-96 md:h-96 lg:h-72 xl:h-72 w-full mt-[-1rem] max-sm:mt-[2rem]">

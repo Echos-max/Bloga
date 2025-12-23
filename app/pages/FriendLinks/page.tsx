@@ -3,6 +3,7 @@ import {Card, CardHeader, Image} from "@heroui/react";
 import { useSpring, animated } from 'react-spring';
 import {useEffect, useState} from "react";
 import {apiClient} from "@/app/utils/axios";
+import Link from "next/link";
 // 接口定义
 interface ImageFormat{
     name:string;
@@ -31,6 +32,7 @@ interface FriendLinkItem {
     documentId: string;
     FriendLinkName: string;
     FriendLinkDesc: string;
+    friendlinkUrl: string;
     FriendLinkCover: FriendLinkCover;
 }
 // 定义接口响应
@@ -61,9 +63,9 @@ const FriendLinks = () => {
             try {
                 setLoading(true)
                 // apiClient 的响应拦截器已经返回了 response.data
-                const  response: any = await  apiClient.get('/api/friend-links?populate=*')
+                const  response: any = await  apiClient.get<ApiFriendLinksReponse>('/api/friend-links?populate=*')
                 setFriendlinkList(response.data)
-                console.log('xzswx1',response)
+                console.log('友情链接地址',response)
             }catch (error){
                 console.log(error)
                 setFriendlinkList([]) // 确保出错时也是空数组
@@ -87,8 +89,16 @@ const FriendLinks = () => {
             return (
                 <Card key={item.id} className="col-span-12 sm:col-span-4 h-[150px]">
                     <CardHeader className="absolute z-10 top-1 flex-col items-start!">
-                        <p className="text-tiny text-white/60 uppercase font-bold">{item.FriendLinkName}</p>
+                        {/* 此处是链接 */}
+                        <Link
+                            href={item.friendlinkUrl || '#'}
+                            target="_blank"
+                            className="text-sm text-blue-400 hover:text-gray-900  underline z-20"
+                        >
+                            <p className="text-tiny text-white/60 uppercase font-bold">{item.FriendLinkName}</p>
+                        </Link>
                         <h4 className="text-white font-medium text-large">{item.FriendLinkDesc}</h4>
+
                     </CardHeader>
                     <Image
                         removeWrapper
