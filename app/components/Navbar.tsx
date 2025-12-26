@@ -32,6 +32,7 @@ export default function TopNavbar() {
 
   
   // 登陆后台地址
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [loginurlpath, setLoginUrlpath] = useState<any[]>([]);
 
   // 移动端底部导航项
@@ -47,9 +48,9 @@ export default function TopNavbar() {
       try {
         const res = await apiClient.get('/api/loginurls');
         const data = res?.data;
-        // @ts-ignore
         setLoginUrlpath(Array.isArray(data) ? data : (data ? [data] : []));
         console.log('我是登陆地址', res.data);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         // 静默处理错误，避免在控制台显示 404
         if (error?.response?.status === 404) {
@@ -138,7 +139,9 @@ export default function TopNavbar() {
           </NavbarItem>
         </NavbarContent>
         <NavbarContent justify="end">
+
           <NavbarItem className="hidden lg:flex flex-row items-center gap-2">
+            {/*eslint-disable-next-line @typescript-eslint/no-explicit-any*/}
             {Array.isArray(loginurlpath) && loginurlpath.map((item: any, idx: number) => {
               const loginurls = item?.loginurl || "";
               console.log("我是登陆地址",loginurls);
@@ -173,6 +176,7 @@ export default function TopNavbar() {
             </Link>
           ))}
           {/* 移动端登录项 */}
+          {/*eslint-disable-next-line @typescript-eslint/no-explicit-any*/}
           {Array.isArray(loginurlpath) && loginurlpath.map((item: any, idx: number) => {
             const loginurls = item?.loginurl || "";
             const loginName = item?.loginName || "登录";

@@ -4,6 +4,7 @@ import { useSpring, animated } from 'react-spring';
 import {useEffect, useState} from "react";
 import {apiClient} from "@/app/utils/axios";
 import Link from "next/link";
+ 
 // 接口定义
 interface ImageFormat{
     name:string;
@@ -63,6 +64,7 @@ const FriendLinks = () => {
             try {
                 setLoading(true)
                 // apiClient 的响应拦截器已经返回了 response.data
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const  response: any = await  apiClient.get<ApiFriendLinksReponse>('/api/friend-links?populate=*')
                 setFriendlinkList(response.data)
                 console.log('友情链接地址',response)

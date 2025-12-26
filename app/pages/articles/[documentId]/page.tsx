@@ -29,10 +29,11 @@ export async function generateStaticParams() {
     const articles = res.data || [];
 
     console.log(`Generating static params for ${articles.length} articles`);
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     return articles.map((article: any) => ({
       documentId: article.documentId,
     }));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.warn("Failed to fetch articles for static generation:", error.message);
     console.warn("Continuing build without pre-generated article pages");

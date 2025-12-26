@@ -119,6 +119,7 @@ const Dymix = () => {
       try {
         setLoading(true);
         // apiClient 的响应拦截器已经返回了 response.data
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const response: any = await apiClient.get<UserAvApiResponse>("/api/dymixes?populate=*");
         // 安全地设置数据，确保是数组
         const data = response?.data;

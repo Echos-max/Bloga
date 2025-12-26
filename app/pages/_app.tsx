@@ -1,7 +1,7 @@
 // pages/_app.js
 import {HeroUIProvider} from '@heroui/react'
 
-// @ts-ignore
+// @ts-expect-error
 function MyApp({ Component, pageProps }) {
     return (
         <HeroUIProvider>

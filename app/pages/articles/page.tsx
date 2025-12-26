@@ -71,6 +71,7 @@ export default function Home() {
     try {
       // apiClient 的响应拦截器已经返回了 response.data
       // 所以这里的 res 就是服务器返回的 { data: [...], meta: {...} }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const res: any = await apiClient.get("/api/articles?populate=*", {
         // 假设你的后端接口是 /articles，支持分页参数
         params: {

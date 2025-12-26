@@ -1,0 +1,10 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/pages/FriendLinks/page": "/pages/FriendLinks",
+  "/pages/articles/page": "/pages/articles",
+  "/pages/Dynanmin/page": "/pages/Dynanmin",
+  "/pages/Album/page": "/pages/Album",
+  "/pages/articles/[documentId]/page": "/pages/articles/[documentId]"
+}

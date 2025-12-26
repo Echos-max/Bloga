@@ -78,6 +78,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
             ]}
             components={{
                 // 修复类型错误：为code组件定义正确的类型
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 code({ node, inline, className, children, ...props }: any) {
                     const match = /language-(\w+)/.exec(className || '');
 
